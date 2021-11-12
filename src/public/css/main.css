@@ -1,4 +1,9 @@
+/* Color Theme Variables */
+:root {
+    --main-background-color: black;
+    --main-text-color: white;
+}
 body {
-    background-color: black;
-    color: white;
+    background-color: var(--main-background-color);
+    color: var(--main-text-color);
 }
