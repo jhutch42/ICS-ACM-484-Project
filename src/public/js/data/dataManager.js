@@ -1,12 +1,10 @@
 export default class DataManager {
     publisher;  
     subscriber;
-    #dataTable;   // (Private) Hashes games with a unique id
     constructor(publisher, subscriber){
         this.publisher = publisher;
         this.subscriber = subscriber;
         this.subscriber.setCallbackFunction(this.messageHandler);
-        this.#dataTable = new Map();
     };
 
     /**

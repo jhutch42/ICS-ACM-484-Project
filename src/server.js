@@ -33,6 +33,7 @@ async function processLineByLine(callback) {
 }
 
 // processLineByLine(parseCSV);
+//createOpeningsJSONFile(checkForCompletion);
 
 function parseCSV(dataArray) {
     let headerArray = dataArray[0].split(',');
@@ -52,6 +53,38 @@ function parseCSV(dataArray) {
             if (error) console.log(error);
         });
     }
+// }
+// const openings = [];
+// function createOpeningsJSONFile(callback) {
+
+//     for (let i = 0; i < 15; i++) {
+//         fs.readFile('chessDataFiles/ratedClassicalGame_' + i + '.json','utf8', (error, data) => {
+//             if (error) {
+//                 console.log(error);
+//                 return;
+//             }
+//             const gameData = JSON.parse(data);
+//             Object.values(gameData).forEach(game => {
+//                 if (!openings.includes(game.Opening)) {
+//                     openings.push(game.Opening);
+//                 }
+//             });
+//             callback();
+//         });
+
+//     }
+// }
+
+// let count = 0;
+// function checkForCompletion () {
+//     count++;
+//     if (count === 15) {
+//         writeFile('chessDataFiles/openingsList.json', openings);
+//     } else console.log('not done yet: ' + count);
+// } 
+
+function writeFile(filename, object) {
+    fs.writeFile(filename, JSON.stringify(openings), (error, result) => {
+        if (error) console.log(error);
+    });
 }
-
-
