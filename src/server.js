@@ -53,7 +53,7 @@ function parseCSV(dataArray) {
             if (error) console.log(error);
         });
     }
-// }
+}
 // const openings = [];
 // function createOpeningsJSONFile(callback) {
 
@@ -82,9 +82,24 @@ function parseCSV(dataArray) {
 //         writeFile('chessDataFiles/openingsList.json', openings);
 //     } else console.log('not done yet: ' + count);
 // } 
+cleanOpeningsList(writeFile);
+function cleanOpeningsList(callback) {
+    fs.readFile('chessDataFiles/openingsList.json', 'utf8', (error, data) => {
+        if (error) {
+            console.log(error);
+            return;
+        }
+        const list = JSON.parse(data);
+        for (let i = 0; i < list.length; i++) {
+            list[i] = list[i].replace("\\", "");
+            list[i] = list[i].replace("\"", "");
+        }
+        callback('chessDataFiles/openingsList.json', list);
+    });
+}
 
 function writeFile(filename, object) {
-    fs.writeFile(filename, JSON.stringify(openings), (error, result) => {
+    fs.writeFile(filename, JSON.stringify(object), (error, result) => {
         if (error) console.log(error);
     });
 }
